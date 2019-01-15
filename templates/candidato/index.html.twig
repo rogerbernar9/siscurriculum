@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-
-<title>Hello CandidatoController!</title>
+{% extends 'base.html.twig' %}
+{% block title %}Hello ! {% endblock %}
 
 {% block body %}
-	{{ form_start(form) }}
+	{% form_theme form with 'bootstrap_4_horizontal_layout.html.twig' %}
+	{% form_theme form.endereco with 'bootstrap_4_layout.html.twig' %}
+	
+	{{ form_start(form, {"attr": {"novalidate":"novalidate"} }) }}
 	{{ form_widget(form) }}
 	{{ form_end(form) }}
 {% endblock %}

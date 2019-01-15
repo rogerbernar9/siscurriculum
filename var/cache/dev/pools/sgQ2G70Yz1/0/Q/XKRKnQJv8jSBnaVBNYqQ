@@ -4,6 +4,7 @@
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ManyToMany'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToMany')),
             clone ($p['Doctrine\\ORM\\Mapping\\JoinTable'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinTable')),
+            clone ($p['Symfony\\Component\\Validator\\Constraints\\Count'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\Count')),
         ],
         null,
         [
@@ -17,11 +18,23 @@
                 'name' => [
                     1 => 'candidatos_tecnologia',
                 ],
+                'min' => [
+                    2 => '3',
+                ],
+                'max' => [
+                    2 => '10',
+                ],
+                'groups' => [
+                    2 => [
+                        'Default',
+                    ],
+                ],
             ],
         ],
         [
             $o[0],
             $o[1],
+            $o[2],
         ],
         []
     );

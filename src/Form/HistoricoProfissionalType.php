@@ -16,14 +16,14 @@ class HistoricoProfissionalType extends AbstractType
     {
         $builder
             ->add('nome_empresa', TextType::class, [
-                'label' => "Histórico profissional"
+                'label' => "Empresa"
             ])
             ->add('dataEntrada', DateType::class, [
-                'widget' => 'text',
+                'widget' => 'choice',
                 'format' => 'dd/MM/yyyy'
             ])
             ->add('dataSaida', DateType::class, [
-                'widget' => 'text',
+                'widget' => 'choice',
                 'format' => 'dd/MM/yyyy'
             ])
             ->add('empregoAtual', CheckboxType::class, [

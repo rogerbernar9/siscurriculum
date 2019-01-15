@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Candidato;
+use App\Form\Type\SexoType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -40,14 +41,7 @@ class CandidatoType extends AbstractType
                     'type'=>'number'
                 ]
             ])
-            ->add('sexo', ChoiceType::class, [
-                'label' => "Sexo",
-                'choices' => [
-                    'Masculino' => "M",
-                    'Feminino' => "F"
-                ],
-                'expanded' => true
-            ])
+            ->add('sexo', SexoType::class)
             ->add('data_nascimento', BirthdayType::class, [
                 'label' => "Data nascimento",
                 'format' => 'dd-MM-yyyy',
@@ -76,6 +70,9 @@ class CandidatoType extends AbstractType
             
             ->add('foto', FileType::class, [
                 'label' => "Selecione uma foto"
+            ])
+            ->add('palavra_magica', TextType::class, [
+                'label' => "Palavra mágica"
             ])
             ->add('bt_salvar', SubmitType::class, [
                 'label' => "Salvar"

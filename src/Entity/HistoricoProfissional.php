@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\HistoricoProfissionalRepository")
@@ -20,18 +22,26 @@ class HistoricoProfissional
     /**
      * @var string
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $nome_empresa;
     
     /**
      * @var \DateTime
      * @ORM\Column(type="date")
+     * @Assert\NotBlank()
+     * @Assert\Date()
      */
     private $data_entrada;
     
     /**
      * @var \DateTime
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date()
+     * @Assert\Expression(
+     *      "this.isEmpregoAtual() == true && value == '' || this.isEmpregoAtual() == false && value != '' ",
+     *      message="Se for seu emprego atual, o campo data saída deve ser vazio"
+     *      )     
      */
     private $data_saida;
     
@@ -57,7 +67,7 @@ class HistoricoProfissional
     /**
      * @return string
      */
-    public function getNome_empresa()
+    public function getNomeEmpresa()
     {
         return $this->nome_empresa;
     }
@@ -104,6 +114,7 @@ class HistoricoProfissional
 
     /**
      * @param \DateTime $data_saida
+     * @return HistoricoProfissional
      */
     public function setDataSaida($data_saida)
     {

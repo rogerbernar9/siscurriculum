@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CandidatoRepository")
@@ -37,6 +38,8 @@ class Candidato
      *
      * @var string
      * @ORM\Column(type="string", length=1)
+     * @Assert\NotBlank()
+     * @Assert\Choice(choices={"M","F"})
      */
     private $sexo;
     
@@ -44,6 +47,8 @@ class Candidato
      *
      * @var \DateTime
      * @ORM\Column(type="date")
+     * @Assert\NotBlank()
+     * @Assert\Date()
      */
     private $data_nascimento;
     
@@ -54,6 +59,7 @@ class Candidato
      *
      * @var string
      * @ORM\Column(type="string")
+     * @Assert\File(mimeTypes={"image/png","image/jpg"})
      */
     private $foto;
     
@@ -61,13 +67,15 @@ class Candidato
      *
      * @var Cargo
      * @ORM\ManyToOne(targetEntity="App\Entity\Cargo")
+     * @Assert\NotBlank()
      */
     private $cargo;
     
     /**
      *
      * @var Endereco
-     * @ORM\ManyToOne(targetEntity="App\Entity\Endereco")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Endereco", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $endereco;    
     
@@ -76,12 +84,15 @@ class Candidato
      *
      * @var float
      * @ORM\Column(type="decimal", precision=2, length=10)
+     * @Assert\NotBlank()
+     * @Assert\Range(min="0", max="10000000")
      */
     private $pretensao_salarial;
     
     /**
      * @var HistoricoProfissional
      * @ORM\OneToMany(targetEntity="App\Entity\HistoricoProfissional", mappedBy="candidato")
+     * @Assert\Valid()
      */
     private $historico;
     
@@ -89,8 +100,16 @@ class Candidato
      * @var Tecnologia
      * @ORM\ManyToMany(targetEntity="App\Entity\Tecnologia", inversedBy="candidatos")
      * @ORM\JoinTable(name="candidatos_tecnologia")
+     * @Assert\Count(min="3", max="10")
      */
     private $tecnologias;
+    
+    
+    /**
+     * @var string
+     * @\App\Validator\SonPass()
+     */
+    private $palavra_magica;
     
     
 
@@ -257,6 +276,22 @@ class Candidato
     {
         $this->tecnologias = $tecnologias;
     }
+    /**
+     * @return string
+     */
+    public function getPalavraMagica()
+    {
+        return $this->palavra_magica;
+    }
+
+    /**
+     * @param string $palavra_magica
+     */
+    public function setPalavraMagica($palavra_magica)
+    {
+        $this->palavra_magica = $palavra_magica;
+    }
+
 
 
 

@@ -3246,17 +3246,17 @@
     },
     {
         "name": "symfony/expression-language",
-        "version": "v4.2.1",
-        "version_normalized": "4.2.1.0",
+        "version": "v4.2.2",
+        "version_normalized": "4.2.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/expression-language.git",
-            "reference": "2d2741ecba77e1cb27b726f12a6d43cfc2f199af"
+            "reference": "78a427af5e08eba1b391ddfbcaebb6dc6ab715be"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/expression-language/zipball/2d2741ecba77e1cb27b726f12a6d43cfc2f199af",
-            "reference": "2d2741ecba77e1cb27b726f12a6d43cfc2f199af",
+            "url": "https://api.github.com/repos/symfony/expression-language/zipball/78a427af5e08eba1b391ddfbcaebb6dc6ab715be",
+            "reference": "78a427af5e08eba1b391ddfbcaebb6dc6ab715be",
             "shasum": ""
         },
         "require": {
@@ -3264,7 +3264,7 @@
             "symfony/cache": "~3.4|~4.0",
             "symfony/contracts": "^1.0"
         },
-        "time": "2018-11-11T19:52:12+00:00",
+        "time": "2019-01-03T09:07:35+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
